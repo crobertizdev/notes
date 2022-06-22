@@ -1,6 +1,6 @@
-# Notas
+# Notes
 
-## Contenido
+## Content
 
 - [Markdown](./markdown/)
 - [React](./react/)

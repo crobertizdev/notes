@@ -1,4 +1,4 @@
-# Arhlinux
+# Archlinux
 
 # Table of Content
 
@@ -6,16 +6,21 @@
 - [Installation](#installation)
   - [Wifi Internet Connection](#wifi-internet-connection)
   - [Partition the disk](#partition-the-disk)
-  - [GRUB Installation](#grub-installation)
-  - [Create the user](#create-the-user)
   - [Format the partitions](#format-partitions)
+  - [Select the mirrors](#select-the-mirrors)
   - [Network Configuration](#network-configuration)
   - [Network Manager](#network-manager)
   - [GRUB Installation](#grub-installation)
   - [Create the user](#create-the-user)
-  - [Create the user](#create-the-user)
   - [User root](#user-root)
   - [To turn off](#to-turn-off)
+- [Configuration](#configuration)
+- [Useful concepts](#useful-concepts)
+  - [Pacman](#pacman)
+- [Applications](#applications)
+  - [Vscode](#vscode)
+  - [VLC](#vlc)
+- [QTile](#qtile)
 
 # Download
 
@@ -27,19 +32,19 @@
 
 If you have BIOS instead of UEFI skip certain points from the wiki
 
-> Before starting the installation, remove all partitions from the old OS disk and leave the disk unpartitioned, only MBR formatted
+> Before starting the installation, remove all partitions from the old OS disk and leave the disk unpartitioned
 
 ## Wifi Internet Connection
 
 Words in quotes must be changed
 
 ```bash
-iwctl
-device list
-station 'name' scan
-station 'name' get-networks
-station 'name' connect 'name_your_network'
-exit
+$ iwctl
+$ device list
+$ station 'name' scan
+$ station 'name' get-networks
+$ station 'name' connect 'name_your_network'
+$ exit
 ```
 
 Check the connection:
@@ -48,25 +53,22 @@ Check the connection:
 ## Partition the disk
 
 Shows disks and partitions
-
 `lsblk`
 
 `fdisk -l`
 
-Create 3 primary partitions
+Create 3 primary partitions with `cfdisk`
 
 - `/` 20 GB
 - `swap` 8 GB
 - `/home` rest of storage
 
-`cfdisk`
-
 NEW
 
 > In the terminal just put the G instead of GB
 
-Once the partitions have been created, the 3 partitions are located in the swap partition, then Type / Linux Swap.
-Also press Bootable on the partition /
+Once the partitions have been created the 3 partitions are located in the swap partition, then Type / Linux Swap.
+Also press Bootable on the partition `/`
 
 WRITE
 
@@ -79,6 +81,22 @@ QUIT
 ## Format partitions
 
 Format as ext4 with exception of swap
+
+## Select the mirrors
+
+https://wiki.archlinux.org/title/Mirrors
+
+The mirros are in the file `/etc/pacman.d/mirrorlist`
+
+We will use reflector to select the fastest servers. You must run the command every so often so that you have the most recent mirrors. Before deleting existing mirrors
+
+https://wiki.archlinux.org/title/Reflector
+
+```bash
+$ sudo pacman -S reflector
+$ reflector --help
+$ sudo reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist
+```
 
 ## Network configuration:
 
@@ -93,11 +111,13 @@ Format as ext4 with exception of swap
 https://wiki.archlinux.org/title/NetworkManager
 
 ```bash
-sudo pacman -S networkmanager
-systemctl enable NetworkManager
+$ sudo pacman -S networkmanager
+$ systemctl enable NetworkManager
 ```
 
 ## GRUB Installation
+
+https://wiki.archlinux.org/title/GRUB
 
 `sudo pacman -S grub`
 
@@ -114,8 +134,8 @@ In the partition root
 ## Create the user
 
 ```bash
-useradd -m 'name_username
-passwd 'password_of_username''
+$ useradd -m 'name_username
+$ passwd 'password_of_username''
 ```
 
 ## User root
@@ -123,18 +143,18 @@ passwd 'password_of_username''
 For the user to have sudo permissions we must add it to the `wheel` group, which in Ubuntu is sudo
 
 ```bash
-sudo pacman -S sudo
-usermod -aG wheel,audio,video,storage 'name_username'
-su 'user_name'
-groups
-exit
+$ sudo pacman -S sudo
+$ usermod -aG wheel,audio,video,storage 'name_username'
+$ su 'user_name'
+$ groups
+$ exit
 ```
 
 Uncomment the line `zwheel ALL=(ALL) ALL` if you want it to ask you for the password every time you type sudo:
 
 ```bash
-nano /etc/sudoers
-exit
+$ nano /etc/sudoers
+$ exit
 ```
 
 ## To turn off
@@ -142,3 +162,72 @@ exit
 `shutdown now`
 
 Disconnect USB
+
+# Configuration
+
+# Useful concepts
+
+## Pacman
+
+https://wiki.archlinux.org/title/Pacman
+
+Install a package
+
+```bash
+$ sudo pacman -S nombreDelPaquete
+```
+
+Uninstall a package and its dependencies (as long as they are not used by any other package)
+
+```bash
+$ sudo pacman -Rs nombreDelPaquete
+```
+
+Pacman saves important configuration files when removing certain applications and names them with the extension: .pacsave . To prevent the creation of these backup files, use the -n option:
+
+```bash
+$ sudo pacman -Rsn nombreDelPaquete
+```
+
+# Applications
+
+https://wiki.archlinux.org/title/list_of_applications
+
+## Vscode
+
+https://wiki.archlinux.org/title/Visual_Studio_Code
+
+Vscode installation. Exclusive launch of the Microsoft brand. `visual-studio-code-bin` stores the settings in `~/.config/Code/User/settings.json`
+
+```bash
+$ yay -S visual-studio-code-bin
+```
+
+- ### Font [JetBrains Mono](https://www.jetbrains.com/es-es/lp/mono/)
+
+Unzip the font to `/usr/share/fonts` to install fonts system-wide) and run `fc-cache -f -v`. Restart your IDE. Go to settings of the editor and put in fonts 'JetBrains Mono'. Copy only `/tff /webfont` `/variable` directories
+
+Go to the vscode configuration file and:
+
+```c#
+"editor.fontLigatures": true,
+"editor.fontFamily": "'JetBrains Mono'"
+```
+
+My vscode settings file [here](./vscode/settings.json). Some configurations I copied from the blog of this crack [here](https://medium.com/@liaogg/minimal-vscode-setup-for-maximized-productivity-part-1-19db1c54697).
+
+- ### Theme Gruvbox Material | Dracula
+
+- ### Icons Material Icons
+
+## VLC
+
+```bash
+$ sudo pacman -S vlc
+```
+
+# QTile
+
+The Qtile configuration file `~/.config/qtile/config.py`
+
+My qtile setting file [here](./qtile/)
