@@ -18,4 +18,4 @@ https://miktex.org/download
 yay -S miktex
 ```
 
-$\sum_{n=1}^{N}n^{-s}$
+$a x^2 + b x + c = 0$
