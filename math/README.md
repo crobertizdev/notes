@@ -1,21 +1,35 @@
-# LATEX
+# Tabla de contenido
 
-Todas las operaciones matematicas son creadas con [LATEX](https://es.wikipedia.org/wiki/LaTeX#S%C3%ADmbolos_matem%C3%A1ticos)
+- [Fracciones](#fracciones)
+  - [Tipos de fracciones](#tipos-de-fracciones)
+  - [Fracciones equivalentes](#fracciones-equivalentes)
 
-# Utilidades
+# Fracciones
 
-## Extensiones para vscode:
+$\huge {\frac{5}{12}}$ cinco doceavos
 
-- LaTeX
-- LaTeX Utilities
-- LaTeX Workshop
+$\huge {\frac{3 \ \rightarrow \ numerador}{5 \ \rightarrow \ denominador}} $
 
-## MiKTeX es una distribución TeX moderna:
+El **numerador** es el número de partes que se seleccionan.
 
-https://miktex.org/download
+El **denominador** es el número de partes iguales en que se divide la unidad.
 
-```bash
-yay -S miktex
-```
+## Tipos de fracciones
 
-$a x^2 + b x + c = 0$
+[Representacion grafica de fracciones](https://www.geogebra.org/m/HWEGBuXF)
+
+- **Fracción propia**: $\huge {\frac{2}{3}}$
+
+  Se dibuja una unidad y va quedar deleccionado menos de una unidad. El numerador es menor al denominador.
+
+  ![Fraccion propia](./fracciones/propia.png)
+
+- **Fracción unitaria** $\huge {\frac{4}{4}}$
+
+  Se dibuja una unidad y queda seleccionada toda la unidad. Siempre es 1.
+
+  ![Fraccion propia](./fracciones/unitaria.png)
+
+- **Fracción impropia** $\huge {\frac{5}{2}}$
+
+  Se dibujan varias unidades. El numerador es mayor al denominador

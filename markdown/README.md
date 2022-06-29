@@ -213,6 +213,8 @@ This only works on github
 
 [LATEX](https://es.wikipedia.org/wiki/LaTeX#S%C3%ADmbolos_matem%C3%A1ticos)
 
+[Documentación](https://es.overleaf.com/learn)
+
 ### Extensions for vscode:
 
 - LaTeX
@@ -226,8 +228,14 @@ This only works on github
 Mathematical operations:
 
 ```latex
-The Gamma function satisfying $\Gamma(n) = (n-1)!\quad\forall
-n\in\mathbb N$ is via the Euler integral
+The Gamma function satisfying
+
+$$
+\Gamma(n) = (n-1)!\quad\forall
+n\in\mathbb N
+$$
+
+is via the Euler integral
 
 $$
 \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
@@ -246,3 +254,45 @@ is via the Euler integral
 $$
 \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
 $$
+
+### Font size
+
+```latex
+$\huge 320$
+
+$\ 320$
+
+$\tiny 320$
+```
+
+$\huge 320$
+
+$\ 320$
+
+$\tiny 320$
+
+### Fractions
+
+```latex
+${\frac{5}{12 + 2} + {12}}$
+```
+
+${\frac{5}{12 + 2} + {12}}$
+
+### More
+
+Espacio en blanco
+
+```latex
+$ \ $
+```
+
+$ \ $
+
+Arrows
+
+```latex
+$\rightarrow$
+```
+
+$\rightarrow$
