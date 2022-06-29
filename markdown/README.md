@@ -1,5 +1,22 @@
 # Markdown
 
+# Table o Content
+
+- [Heading](#heading)
+- [Emphasis](#emphasis)
+- [List](#list)
+- [Link](#link)
+- [Quote](#quot)
+- [Horizontal Line](#horizontal-line)
+- [Code](#code)
+- [Table](#table)
+- [Image](#image)
+- [Github Markdown](#github-markdown)
+  - [Todo List](#todo-list)
+  - [Mention Someone](#mention-someone)
+  - [Emojis](#emojis)
+  - [LateX](#latex)
+
 [Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
 
 [Wikipedia](https://es.wikipedia.org/wiki/Markdown)
@@ -8,7 +25,7 @@
 
 To give line breaks leave a line between each one
 
-# 1. Heading
+# Heading
 
 ```md
 # my title
@@ -40,7 +57,7 @@ standar
 
 standar
 
-# 2. Emphasis
+# Emphasis
 
 ```md
 _Italic type_
@@ -54,7 +71,7 @@ _Italic type_
 
 ~~Negative~~
 
-# 3. List
+# List
 
 ## Ordered lists.
 
@@ -196,7 +213,7 @@ This only works on github
 
 [LATEX](https://es.wikipedia.org/wiki/LaTeX#S%C3%ADmbolos_matem%C3%A1ticos)
 
-### Extensiones para vscode:
+### Extensions for vscode:
 
 - LaTeX
 - LaTeX Utilities
@@ -206,14 +223,20 @@ This only works on github
 
 [Inserta fórmulas matemáticas creadas en LateX](https://medium.com/@luiscarlos_40534/inserta-f%C3%B3rmulas-matem%C3%A1ticas-creadas-en-latex-con-markdown-ab59f5a68211)
 
-Operaciones matemáticas:
+Mathematical operations:
 
 ```latex
-$a x^2 + b x + c = 0$
+The Gamma function satisfying $\Gamma(n) = (n-1)!\quad\forall
+n\in\mathbb N$ is via the Euler integral
+
+$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$
 ```
 
-$a x^2 + b x + c = 0$
+The Gamma function satisfying $\Gamma(n) = (n-1)!\quad\forall
+n\in\mathbb N$ is via the Euler integral
 
-Image
-
-![Operation](./operation.png)
+$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$
