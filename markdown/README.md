@@ -191,3 +191,29 @@ This only works on github
 ```
 
 :kissing:
+
+## LateX
+
+[LATEX](https://es.wikipedia.org/wiki/LaTeX#S%C3%ADmbolos_matem%C3%A1ticos)
+
+### Extensiones para vscode:
+
+- LaTeX
+- LaTeX Utilities
+- LaTeX Workshop
+
+[Formulas LateX mas comunes](https://wiki.geogebra.org/es/C%C3%B3digo_LaTeX_para_las_f%C3%B3rmulas_m%C3%A1s_comunes)
+
+[Inserta fórmulas matemáticas creadas en LateX](https://medium.com/@luiscarlos_40534/inserta-f%C3%B3rmulas-matem%C3%A1ticas-creadas-en-latex-con-markdown-ab59f5a68211)
+
+Operaciones matemáticas:
+
+```latex
+$a x^2 + b x + c = 0$
+```
+
+$a x^2 + b x + c = 0$
+
+Image
+
+![Operation](./operation.png)
