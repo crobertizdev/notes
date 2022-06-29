@@ -296,3 +296,11 @@ $\rightarrow$
 ```
 
 $\rightarrow$
+
+Simbolo diferente
+
+```latex
+$$\neq$$
+```
+
+$$\neq$$
