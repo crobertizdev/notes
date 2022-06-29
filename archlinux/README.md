@@ -226,6 +226,44 @@ My vscode settings file [here](./vscode/settings.json). Some configurations I co
 $ sudo pacman -S vlc
 ```
 
+## Transmission-gtk
+
+Cliente BitTorrent
+
+https://archlinux.org/packages/?name=transmission-gtk
+
+```bash
+$ sudo pacman -S transmission-gtk
+```
+
+## Gnome Disk Utility
+
+https://archlinux.org/packages/extra/x86_64/gnome-disk-utility/
+
+```bash
+sudo pacman -S gnome-disk-utility
+```
+
+## Discord
+
+https://wiki.archlinux.org/title/Discord
+
+## Redshift
+
+Luz nocturna
+
+```bash
+sudo pacman -S redshift
+```
+
+## Arduino
+
+## RecordMyDesktop
+
+Grabador de pantalla
+
+https://aur.archlinux.org/packages/gtk-recordmydesktop
+
 # QTile
 
 The Qtile configuration file `~/.config/qtile/config.py`
