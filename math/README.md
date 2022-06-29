@@ -20,15 +20,13 @@ El **denominador** es el número de partes iguales en que se divide la unidad.
 
 - **Fracción propia**: $\huge {\frac{2}{3}}$
 
-  Se dibuja una unidad y va quedar deleccionado menos de una unidad. El numerador es menor al denominador.
+![Fraccion propia](./fracciones/fraccion_propia1.png)
 
-  ![Fraccion propia](./fracciones/propia.png)
+Se dibuja una unidad y va quedar seleccionado menos de una unidad. El numerador es menor al denominador.
 
 - **Fracción unitaria** $\huge {\frac{4}{4}}$
 
   Se dibuja una unidad y queda seleccionada toda la unidad. Siempre es 1.
-
-  ![Fraccion propia](./fracciones/unitaria.png)
 
 - **Fracción impropia** $\huge {\frac{5}{2}}$
 
