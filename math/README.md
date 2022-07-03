@@ -73,7 +73,7 @@ Dividir el numerador y denominador entre un mismo número primo (números primos
 
 1. $$\ {\frac{2}{4}} = {\frac{1}{2}} \rightarrow Esto \ es \ asi \ porque \ {{2}\div{2}} = 1 \ y \ {{4}\div{2}} = 2$$
 
-> En ambas divisiones el resto debe ser 0, sino es asi se intenta con el numero primo que le sigue.
+> En ambas divisiones el resto debe ser 0, es decir el cociente no debe ser un nro decimal, sino es asi se intenta con el numero primo que le sigue.
 
 2. $$\ {\frac{18}{30}} = {\frac{9}{15}} = {\frac{3}{5}}$$
    Intentamos primero dividiendo por 2

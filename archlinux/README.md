@@ -1,74 +1,90 @@
 # Archlinux
 
-# Table of Content
+# Tabla de Contenido
 
-- [Download](#download)
-- [Installation](#installation)
-  - [Wifi Internet Connection](#wifi-internet-connection)
-  - [Partition the disk](#partition-the-disk)
-  - [Format the partitions](#format-partitions)
-  - [Select the mirrors](#select-the-mirrors)
-  - [Network Configuration](#network-configuration)
+- [Descarga](#descarga)
+- [Instalación](#instalación)
+  - [Conexión a internet wifi](#conexión-a-internet-wifi)
+  - [Particionar el disco](#particionar-el-disco)
+  - [Formatear las particiones](#formatear-particiones)
+  - [Configurar las mirrors](#configurar-las-mirrors)
+  - [Configuración de red](#configuración-de-red)
   - [Network Manager](#network-manager)
-  - [GRUB Installation](#grub-installation)
-  - [Create the user](#create-the-user)
-  - [User root](#user-root)
-  - [To turn off](#to-turn-off)
-- [Configuration](#configuration)
-- [Useful concepts](#useful-concepts)
-  - [Pacman](#pacman)
-- [Applications](#applications)
+  - [Instalación del GRUB](#instalación-del-grub)
+  - [Crear el usuario](#crear-el-usuario)
+  - [Usuario root](#usuario-root)
+  - [Apagar](#apagar)
+- [Configuración](#configuración)
+  - [Conceptos útiles](#conceptos-útiles)
+    - [Pacman](#pacman)
+  - [Conectar a wifi con netwokmanager](#conectar-a-wifi-con-networkmanager)
+  - [Xorg](#xorg)
+  - [Fuentes del SO](#fuentes-del-so)
+  - [OS PROBER](#os-prober)
+  - [Instalar un entorno de escritorio DE](#instalar-un-entorno-de-escritorio-de)
+  - [Actualizar el sistema](#actualizar-el-sistema)
+- [Aplicaciones](#aplicaciones)
   - [Vscode](#vscode)
   - [VLC](#vlc)
+  - [Transmision GTK](#transmission-gtk)
+  - [Gnome Disk Utility](#gnome-disk-utility)
+  - [Discord](#discord)
+  - [Redshift](#redshift)
+  - [Arduino](#arduino)
+  - [RecordMyDesktop](#recordmydesktop)
+  - [Alacritty](#alacritty)
+  - [Google Chrome](#google-chrome)
+  - [Micro](#micro)
+- [Crea tu propio DE](#crea-tu-propio-de)
 - [QTile](#qtile)
 
-# Download
+# Descarga
 
-[Download ISO file](https://archlinux.org/download/)
+[Descargar el fichero ISO](https://archlinux.org/download/)
 
-# Installation
+# Instalación
 
-[Installation Guide](https://wiki.archlinux.org/title/Installation_guide)
+[Guia de Instalación](<https://wiki.archlinux.org/title/Installation_guide_(Espa%C3%B1ol)>)
 
-If you have BIOS instead of UEFI skip certain points from the wiki
+Si tiene BIOS en lugar de UEFI, omita ciertos puntos de la wiki.
 
-> Before starting the installation, remove all partitions from the old OS disk and leave the disk unpartitioned
+> Antes de comenzar la instalación, elimine todas las particiones del disco antiguo del sistema operativo y deje el disco sin particionar.
 
-## Wifi Internet Connection
+## Conexión a internet wifi
 
-Words in quotes must be changed
+Las palabras entre comillas deben cambiarse
 
 ```bash
 $ iwctl
 $ device list
-$ station 'name' scan
-$ station 'name' get-networks
-$ station 'name' connect 'name_your_network'
+$ station 'nombre' scan
+$ station 'nombre' get-networks
+$ station 'nombre' connect 'nombre_de_tu_red'
 $ exit
 ```
 
-Check the connection:
+Verifique la conexión:
 `ping google.com`
 
-## Partition the disk
+## Particionar el disco
 
-Shows disks and partitions
+Mostrar discos y particiones
 `lsblk`
 
 `fdisk -l`
 
-Create 3 primary partitions with `cfdisk`
+Crear 3 particiones primarias con `cfdisk`
 
 - `/` 20 GB
 - `swap` 8 GB
-- `/home` rest of storage
+- `/home` resto del espacio
 
 NEW
 
-> In the terminal just put the G instead of GB
+> En la terminal solo pon la G en lugar de GB.
 
-Once the partitions have been created the 3 partitions are located in the swap partition, then Type / Linux Swap.
-Also press Bootable on the partition `/`
+Una vez que se han creado las tres particiones, ubiquese en la partición de swap, luego `Type / Linux Swap`.
+También presione Bootable en la partición `/`
 
 WRITE
 
@@ -78,19 +94,18 @@ QUIT
 
 `lsblk`
 
-## Format partitions
+## Formatear particiones
 
-Format as ext4 with exception of swap
+Formatear como ext4 con excepción de swap
 
-## Select the mirrors
+## Configurar las mirrors
 
-https://wiki.archlinux.org/title/Mirrors
+https://wiki.archlinux.org/title/Mirrors_(Espa%C3%B1ol)
 
-The mirros are in the file `/etc/pacman.d/mirrorlist`
+Las mirrors están en el archivo. `/etc/pacman.d/mirrorlist`
 
-We will use reflector to select the fastest servers. You must run the command every so often so that you have the most recent mirrors. Before deleting existing mirrors
-
-https://wiki.archlinux.org/title/Reflector
+Usaremos reflector para seleccionar los servidores más rápidos. Debe ejecutar el comando cada cierto tiempo para que tenga las mirrors más recientes. Antes eliminar las mirrors existentes.
+https://wiki.archlinux.org/title/Reflector_(Espa%C3%B1ol)
 
 ```bash
 $ sudo pacman -S reflector
@@ -98,7 +113,7 @@ $ reflector --help
 $ sudo reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist
 ```
 
-## Network configuration:
+## Configuración de red:
 
 ```bash
 127.0.0.1	localhost
@@ -108,6 +123,8 @@ $ sudo reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist
 
 ## Network Manager
 
+Este programa nos permitirá tener internet al encender la pc
+
 https://wiki.archlinux.org/title/NetworkManager
 
 ```bash
@@ -115,110 +132,222 @@ $ sudo pacman -S networkmanager
 $ systemctl enable NetworkManager
 ```
 
-## GRUB Installation
+## Instalación del GRUB
 
-https://wiki.archlinux.org/title/GRUB
+https://wiki.archlinux.org/title/GRUB_(Espa%C3%B1ol)
 
 `sudo pacman -S grub`
 
-### GRUB Installation on the HDD
+### Instalación del GRUB en el HDD
 
-In the partition root
+En la partición root
 
 `grub-install /dev/sda1`
 
-### Create grub configuration file which is in boot
+### Crear el archivo de configuración de grub que está en el root
 
 `grub-mkconfig -o /boot/grub/grub.cfg`
 
-## Create the user
+## Crear el usuario
 
 ```bash
-$ useradd -m 'name_username
-$ passwd 'password_of_username''
+$ useradd -m 'nombre_de_usuario'
+$ passwd 'contraseña_del_usuario'
 ```
 
-## User root
+## Usuario root
 
-For the user to have sudo permissions we must add it to the `wheel` group, which in Ubuntu is sudo
+Para que el usuario tenga permisos sudo debemos agregarlo al grupo `wheel`, que en Ubuntu es sudo
 
 ```bash
 $ sudo pacman -S sudo
-$ usermod -aG wheel,audio,video,storage 'name_username'
-$ su 'user_name'
+$ usermod -aG wheel,audio,video,storage 'nombre_del_usuario'
+$ su 'nombre_de_usuario'
 $ groups
 $ exit
 ```
 
-Uncomment the line `zwheel ALL=(ALL) ALL` if you want it to ask you for the password every time you type sudo:
+Quite el comentario de la línea `zwheel ALL=(ALL) ALL` si desea que le solicite la contraseña cada vez que escriba sudo:
 
 ```bash
 $ nano /etc/sudoers
 $ exit
 ```
 
-## To turn off
+## Apagar
 
 `shutdown now`
 
-Disconnect USB
+Desconecte el USB
 
-# Configuration
+# Configuración
 
-# Useful concepts
+# Instalación de software
+
+En arch se instala sotware con el gestor de paquetes `pacman` pero si el paquete que queremos descargar no se encuentra allí usamos [aur](<https://wiki.archlinux.org/title/Arch_User_Repository_(Espa%C3%B1ol)>).
+
+Para usar debemos insalar `yay`:
+
+```bash
+$ sudo pacman -S git
+$ cd /
+$ cd opt/
+$ sudo git clone 	https://aur.archlinux.org/yay-git.git
+$ ls
+$ sudo chown -R 'usuario':'grupo' ./yay-git
+$ ls -l
+$ cd yay-git/
+$ sudo pacman -S base-devel
+$ makepkg -si
+```
+
+> Usuario: carlos. Grupo: carlos
 
 ## Pacman
 
-https://wiki.archlinux.org/title/Pacman
+https://wiki.archlinux.org/title/Pacman_(Espa%C3%B1ol)
 
-Install a package
-
-```bash
-$ sudo pacman -S nombreDelPaquete
-```
-
-Uninstall a package and its dependencies (as long as they are not used by any other package)
+Instalar un paquete
 
 ```bash
-$ sudo pacman -Rs nombreDelPaquete
+$ sudo pacman -S 'nombreDelPaquete'
 ```
 
-Pacman saves important configuration files when removing certain applications and names them with the extension: .pacsave . To prevent the creation of these backup files, use the -n option:
+Desinstalar un paquete y sus dependencias (siempre y cuando no sean utilizadas por ningún otro paquete)
 
 ```bash
-$ sudo pacman -Rsn nombreDelPaquete
+$ sudo pacman -Rs 'nombreDelPaquete'
 ```
 
-# Applications
+Pacman guarda archivos de configuración importantes al eliminar ciertas aplicaciones y los nombra con la extensión: .pacsave. Para evitar la creación de estos archivos de copia de seguridad, utilice la opción -n:
 
-https://wiki.archlinux.org/title/list_of_applications
+```bash
+$ sudo pacman -Rsn 'nombreDelPaquete'
+```
+
+## Conectar a wifi con networkmanager
+
+[networkmanager](https://wiki.archlinux.org/title/NetworkManager#Usage)
+
+```bash
+$ sudo su
+$ nmcli device wifi list
+$ nmcli device wifi connect 'nombre_del_wifi' password 'nombre_de_clave'
+$ nmcli device
+```
+
+## Xorg
+
+De xorg deriva el diseño del teclado (**setxkbmap es**) y el compositor de imágenes (**Picom**)
+
+https://wiki.archlinux.org/title/xorg
+
+```bash
+sudo pacman -S xorg
+```
+
+## Fuentes del SO
+
+https://www.nerdfonts.com/
+
+Nerdfonts son colecciones de fuentes que vienen con [iconos](https://www.nerdfonts.com/cheat-sheet). Lo usaremos para fuentes e íconos de la barra de tareas, terminal, vscode y otros. Mi fuente instalada es [UbuntuMono Nerd Font](https://www.nerdfonts.com/font-downloads)
+
+```bash
+$ sudo pacman -S binutils
+$ yay -S nerd-fonts-ubuntu-mono
+```
+
+En caso de error:
+
+```bash
+$ sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
+```
+
+## OS PROBER
+
+Detectar otros SO desde el grub, como window
+
+[Detectar otros sistemas operativos](<https://wiki.archlinux.org/title/GRUB_(Espa%C3%B1ol)#Detectar_otros_sistemas_operativos>)
+
+```bash
+$ sudo pacman -S os-prober
+$ grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+## Instalar un entorno de escritorio DE
+
+Ver el DE actual:
+
+```bash
+$ echo $XDG_CURRENT_DESKTOP
+```
+
+- **XCFE**
+
+  Usa Thunar como gestor de archivos
+
+- **KDE Plasma**
+
+  Activar el KDE login
+
+  ```bash
+  systemctl enable sddm
+  ```
+
+- **Mate**
+
+- **GNOME**
+
+- **Unity**
+
+- **Cinamon**
+
+## Actualizar el sistema
+
+https://wiki.archlinux.org/title/System_maintenance_(Espa%C3%B1ol)
+
+```bash
+sudo pacman -S -Syu
+```
+
+Actualizar el firmware
+
+```bash
+yay -S wd719x-firmware aic94xx-firmware
+```
+
+# Aplicaciones
+
+https://wiki.archlinux.org/title/List_of_applications_(Espa%C3%B1ol)
 
 ## Vscode
 
 https://wiki.archlinux.org/title/Visual_Studio_Code
 
-Vscode installation. Exclusive launch of the Microsoft brand. `visual-studio-code-bin` stores the settings in `~/.config/Code/User/settings.json`
+Instalación de vscode. Lanzamiento exclusivo de la marca Microsoft. `visual-studio-code-bin` almacena la configuración en `~/.config/Code/User/settings.json`
 
 ```bash
 $ yay -S visual-studio-code-bin
 ```
 
-- ### Font [JetBrains Mono](https://www.jetbrains.com/es-es/lp/mono/)
+- ### Fuente [JetBrains Mono](https://www.jetbrains.com/es-es/lp/mono/)
 
-Unzip the font to `/usr/share/fonts` to install fonts system-wide) and run `fc-cache -f -v`. Restart your IDE. Go to settings of the editor and put in fonts 'JetBrains Mono'. Copy only `/tff /webfont` `/variable` directories
+Descomprima la fuente en `/usr/share/fonts` para instalar fuentes en todo el sistema) y ejecute `fc-cache -f -v`. Reinicie su IDE. Vaya a la configuración del editor y coloque las fuentes 'JetBrains Mono'. Copie solo los directorios `/tff /webfont` `/variable`
 
-Go to the vscode configuration file and:
+Vaya al archivo de configuración de vscode y:
 
 ```c#
 "editor.fontLigatures": true,
-"editor.fontFamily": "'JetBrains Mono'"
+"editor.fontFamily": "'JetBrains Mono', UbuntuMono Nerd Font"
 ```
 
-My vscode settings file [here](./vscode/settings.json). Some configurations I copied from the blog of this crack [here](https://medium.com/@liaogg/minimal-vscode-setup-for-maximized-productivity-part-1-19db1c54697).
+> Agregue `UbuntuMono Nerd Font` si ya lo tienes instalado [aqui](#fonts-for-the-so)
 
-- ### Theme Gruvbox Material | Dracula
+Mi archivo de configuración de vscode [aqui](./vscode/settings.json).Algunas configuraciones son copiadas del blog de este crack [aqui](https://medium.com/@liaogg/minimal-vscode-setup-for-maximized-productivity-part-1-19db1c54697).
 
-- ### Icons Material Icons
+- ### Tema Gruvbox Material | Dracula
+
+- ### Iconos Material Icons
 
 ## VLC
 
@@ -264,8 +393,52 @@ Grabador de pantalla
 
 https://aur.archlinux.org/packages/gtk-recordmydesktop
 
+## Alacritty
+
+https://alacritty.org/
+
+```bash
+sudo pacman -S alacritty
+```
+
+El archivo de configuración de alacritty `~/.config/alacritty/alacritty.yml`
+
+Mi archivo de configuración [aquí](./alacritty/). Es necesario instalar las fuentes [**UbuntuMono Nerd Font**](#fonts-for-the-so) ya que el archivo las pide.
+
+## Google Chrome
+
+https://aur.archlinux.org/packages/google-chrome
+
+```bash
+$ yay -S google-chrome
+$ google-chrome-stable
+```
+
+## Micro
+
+Editor de terminal
+
+```bash
+$ yay -S micro
+$ micro
+```
+
+- Ctrl + E para escribir comandos
+- Ctrl + G para sacar el help
+- Ctrl + Q para salir
+
+# Crea tu propio DE
+
 # QTile
 
-The Qtile configuration file `~/.config/qtile/config.py`
+http://www.qtile.org/
 
-My qtile setting file [here](./qtile/)
+El archivo de configuración de Qtile `~/.config/qtile/config.py`
+
+Mi archivo de configuración de Qtile [aquí](./qtile/)
+
+Mi configuración solicita que se instalen ciertos programas:
+
+- [Fonts](#fonts-for-the-so) (usadas en os widgets de Qtile)
+
+### El .xsession
