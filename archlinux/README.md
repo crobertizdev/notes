@@ -15,8 +15,10 @@
   - [Usuario root](#usuario-root)
   - [Apagar](#apagar)
 - [Configuración](#configuración)
-  - [Conceptos útiles](#conceptos-útiles)
+  - [Instalación de software](#instalación-de-software)
+    - [AUR](#aur)
     - [Pacman](#pacman)
+    - [Curl](#curl)
   - [Conectar a wifi con netwokmanager](#conectar-a-wifi-con-networkmanager)
   - [Xorg](#xorg)
   - [Fuentes del SO](#fuentes-del-so)
@@ -35,8 +37,13 @@
   - [Alacritty](#alacritty)
   - [Google Chrome](#google-chrome)
   - [Micro](#micro)
+  - [Nano](#nano)
+  - [Neovim](#neovim)
 - [Crea tu propio DE](#crea-tu-propio-de)
-- [QTile](#qtile)
+  - [Instalar un login manager](#instalar-un-login-manager)
+  - [Instalar un gestor de ventanas](#instalar-un-gestor-de-ventanas)
+    - [Qtile](#qtile)
+    - [Instalación de Qtile](#instalación-de-qtile)
 
 # Descarga
 
@@ -69,7 +76,7 @@ Verifique la conexión:
 ## Particionar el disco
 
 Mostrar discos y particiones
-`lsblk`
+`lsblk -f`
 
 `fdisk -l`
 
@@ -99,6 +106,8 @@ QUIT
 Formatear como ext4 con excepción de swap
 
 ## Configurar las mirrors
+
+Seleccionar servidores para las descargas de programas.
 
 https://wiki.archlinux.org/title/Mirrors_(Espa%C3%B1ol)
 
@@ -150,6 +159,12 @@ En la partición root
 
 ## Crear el usuario
 
+[Usuarios y grupos](<https://wiki.archlinux.org/title/Users_and_groups_(Espa%C3%B1ol)>)
+
+[Su](<https://wiki.archlinux.org/title/Su_(Espa%C3%B1ol)>)
+
+[Sudo](<https://wiki.archlinux.org/title/Sudo_(Espa%C3%B1ol)>)
+
 ```bash
 $ useradd -m 'nombre_de_usuario'
 $ passwd 'contraseña_del_usuario'
@@ -174,6 +189,14 @@ $ nano /etc/sudoers
 $ exit
 ```
 
+Habilitar la cuenta de superuser y asignarle una contraseña Esto para distros como Ubuntu ya que alli viene deshabilitada:
+
+```bash
+$ sudo passwd root
+```
+
+miclave: supercarlos
+
 ## Apagar
 
 `shutdown now`
@@ -182,11 +205,31 @@ Desconecte el USB
 
 # Configuración
 
-# Instalación de software
+## Hostname
+
+Nombre del equipo
+
+https://wiki.archlinux.org/title/Network_configuration#Set_the_hostname
+
+## Distribución de teclado
+
+```bash
+setxkbmap es
+```
+
+Los cambios no son permanentes por los que se deben agragar al archivo `.xsession`
+
+## Abrir otra terminal
+
+Ctrl + Alt +F2
+
+## Instalación de software
+
+### AUR
 
 En arch se instala sotware con el gestor de paquetes `pacman` pero si el paquete que queremos descargar no se encuentra allí usamos [aur](<https://wiki.archlinux.org/title/Arch_User_Repository_(Espa%C3%B1ol)>).
 
-Para usar debemos insalar `yay`:
+Para usar debemos instalar `yay`, un ayudante de aur:
 
 ```bash
 $ sudo pacman -S git
@@ -203,7 +246,9 @@ $ makepkg -si
 
 > Usuario: carlos. Grupo: carlos
 
-## Pacman
+[Más de yay](https://tecnoysoft.com/es/instalacion-y-uso-basico-de-yay/)
+
+### Pacman
 
 https://wiki.archlinux.org/title/Pacman_(Espa%C3%B1ol)
 
@@ -225,6 +270,13 @@ Pacman guarda archivos de configuración importantes al eliminar ciertas aplicac
 $ sudo pacman -Rsn 'nombreDelPaquete'
 ```
 
+### Curl
+
+```bash
+$ sudo su
+$ sudo pacman -S curl
+```
+
 ## Conectar a wifi con networkmanager
 
 [networkmanager](https://wiki.archlinux.org/title/NetworkManager#Usage)
@@ -238,7 +290,7 @@ $ nmcli device
 
 ## Xorg
 
-De xorg deriva el diseño del teclado (**setxkbmap es**) y el compositor de imágenes (**Picom**)
+De xorg deriva el diseño del teclado (**setxkbmap es**) , el compositor de imágenes (**Picom**) y el menu (**rofi**)
 
 https://wiki.archlinux.org/title/xorg
 
@@ -315,6 +367,129 @@ Actualizar el firmware
 ```bash
 yay -S wd719x-firmware aic94xx-firmware
 ```
+
+## Micro
+
+Editor de terminal
+
+```bash
+$ yay -S micro
+$ micro
+```
+
+## Nano
+
+https://wiki.archlinux.org/title/Nano_(Espa%C3%B1ol)
+
+Editor de terminal
+
+```bash
+sudo pacman -S nano
+```
+
+- Ctrl + E para escribir comandos
+- Ctrl + G para sacar el help
+- Ctrl + Q para salir
+
+## Neovim
+
+https://wiki.archlinux.org/title/Neovim_(Espa%C3%B1ol)
+
+Editor de terminal
+
+```bash
+$ sudo pacman -S nvim
+$ nvim
+```
+
+[Guia de nvim](https://platzi.com/blog/guia-definitiva-para-vim-y-neovim-instalacion-comandos-y-trucos/)
+
+[Buscar y reemplazar](https://atareao.es/tutorial/vim/buscar-y-reemplazar-en-vim/#:~:text=Para%20realizar%20una%20b%C3%BAsqueda%20en,aparecer%C3%A1n%20todas%20las%20coincidencias%20resaltadas.)
+
+## Rofi
+
+https://wiki.archlinux.org/title/Rofi
+
+```bash
+$ sudo pacman -S rofi
+```
+
+Temas de rofi
+
+```bash
+$ sudo pacman -S sed
+$ sudo pacman -S which
+```
+
+Seleccionar los temas
+
+```bash
+rofi-theme-selector
+```
+
+## Detectar android
+
+https://wiki.archlinux.org/title/Media_Transfer_Protocol
+
+```bash
+$ sudo pacman -S mtpfs
+$ sudo pacman -S gvfs-mtp
+$ sudo pacman -S gvfs-gphoto2
+```
+
+## Audio
+
+[Pulseaudio](https://wiki.archlinux.org/title/PulseAudio)
+
+```bash
+$ sudo pacman -S pulseaudio
+```
+
+Instalar un frontend
+
+```bash
+$ sudo pacman -S pavucontrol
+```
+
+Para que funcionen las teclas de volumen:
+
+```bash
+sudo pacman -S pactl
+```
+
+Para que funcionen las teclas de brillo:
+
+```bash
+sudo pacman -S brightnessctl
+```
+
+## Polkit
+
+https://wiki.archlinux.org/title/Polkit
+
+```bash
+$ sudo pacman -S polkit
+$ yay -S xfce-polkit
+```
+
+Interfaz grafica de policykit
+
+```bash
+$ yay -S polkit-explorer-git
+$ polkitex
+```
+
+Iniciar `xfce-polkit` en el .xsession
+
+### Dar permisos a gparted (hago esto porque en mi equipo solo hay un usuario)
+
+```bash
+$ nvim /usr/share/polkit-1/actions
+```
+
+Ir al archivo policy del gparted `org.gnome.gparted.policy`. Modificar el `<allow_any>, <allow_inactive>, <allow_active>` de `auth_admin` por `yes`
+
+## Xsession
 
 # Aplicaciones
 
@@ -403,7 +578,7 @@ sudo pacman -S alacritty
 
 El archivo de configuración de alacritty `~/.config/alacritty/alacritty.yml`
 
-Mi archivo de configuración [aquí](./alacritty/). Es necesario instalar las fuentes [**UbuntuMono Nerd Font**](#fonts-for-the-so) ya que el archivo las pide.
+Mi archivo de configuración [aquí](./alacritty/). Es necesario instalar las fuentes [**UbuntuMono Nerd Font**](#fuentes-del-so) ya que el archivo las pide.
 
 ## Google Chrome
 
@@ -414,31 +589,226 @@ $ yay -S google-chrome
 $ google-chrome-stable
 ```
 
-## Micro
-
-Editor de terminal
+## Thunar
 
 ```bash
-$ yay -S micro
-$ micro
+sudo pacman -S thunar
 ```
 
-- Ctrl + E para escribir comandos
-- Ctrl + G para sacar el help
-- Ctrl + Q para salir
+## Feh
+
+[Arch Wiki](<https://wiki.archlinux.org/title/Feh_(Espa%C3%B1ol)>)
+
+[Documentación oficial](https://man.finalrewind.org/1/feh/)
+
+Visor de imagenes manejado por terminal. Se puede utilizar para establecer el fondo de pantalla.
+
+```bash
+$ sudo pacman -S
+$ feh --bg-scale Downloads/wallpaper.png
+```
+
+Los cambios no son permanentes por los que se deben agragar al archivo `.xsession`
+
+## Mirage
+
+Visor de imagenes de interfaz gŕafica. Viene con previsualizador de miniaturas.
+
+```bash
+yay -S mirage
+```
+
+## Typora
+
+Editor de markdown
+
+```bash
+$ sudo snap install typora
+$ typora
+```
+
+## Firefox
+
+```bash
+sudo pacman -S firefox
+```
+
+## Brave
+
+```bash
+yay -S brave-bin
+```
+
+## Virtual Box
+
+Maquina virtual. Instalar un SO dentro de nuestro SO
+
+[Leer](<https://wiki.archlinux.org/title/VirtualBox_(Espa%C3%B1ol)#Pasos_para_preparar_Arch_Linux_como_sistema_anfitri%C3%B3n>)
+
+```bash
+sudo pacman -S virtualbox
+```
+
+Para usar virtualbox activar la virtualizacion desde la BIOS.
+
+- Nuevo. En nombre poner el nombre del SO
+- Crear un Disco virtual ahora tipo Virtual Box Disk Imagess
+- Reservado dinamicamente
+- Elegir el tamaño del disco duro virtual
+- Antes de iniciar la maquina virtual ir a configuracion / Sistema / Procesador. SI tenes varios nucleos asignarselos para que funcione un poco mas fluido.
+- Luego a Pantalla y asignarle toda la memoria de video
+- Iniciar y seleccionar la imagen ISO
+- Al iniciar el So cambiar la resolucion
+
+Mas recursos:
+
+https://www.youtube.com/watch?v=KEJros9bYkg
+
+https://denovatoanovato.net/instalar-virtualbox-en-archlinux/
+
+## Wine
+
+Los programas de wine se instalan en el directorio `~/.wine`
+
+https://wiki.archlinux.org/title/wine
+
+Habilitar [multilib](https://wiki.archlinux.org/title/Official_repositories#multilib)
+
+```bash
+sudo pacman -S wine-gecko
+sudo pacman -S wine-mono
+sudo pacman -S wine
+```
+
+```bash
+$ winecgf
+$ regedir
+$ wine control
+```
+
+Ejecutar un .exe
+
+```bash
+wine paquete.exe
+```
+
+Desintalar programas
+
+```bash
+wine uninstaller
+```
+
+Programas con wine:
+
+- HWInfo
+
+## Gparted
+
+Editor de particiones
+
+```bash
+$ sudo pacman -S gparted
+$ sudo gparted
+```
+
+## Visor de PDF
+
+```bash
+sudo pacman -S epdfview
+```
+
+[Redimensaionar particiones](https://thelinuxforce.wordpress.com/2012/03/24/redimensionar-particiones-home-y-raiz-entre-otras-con-gparted/). En la parte de de 'Espacio libre a continuacion (MB) es donde se va indicar el nuevo espacio que se va crear '
+
+[Guía de usuario](https://wiki.winehq.org/Wine_User%27s_Guide#Using_Wine)
 
 # Crea tu propio DE
 
-# QTile
+- Todo personalizado
+- Gestor de ventana tipo tiling permitiendo cambiar entre ventanas usando el teclado
+- Gestor de archivos basado en terminal
+- Sin programas inutiles
+- Consume pocos recursos
+- Mucho rendimiento
+- Guarda tus configuraciones en github
+
+## Instalar un Display manager (Gestor de pantalla)
+
+Administrador de visualizacón o administrador de inicio de sesión
+
+[systemd](https://wiki.archlinux.org/title/Systemd#Basic_systemctl_usage)
+
+[Display manager arch](https://wiki.archlinux.org/title/Display_manager#Loading_the_display_manager)
+
+[Ligthdm arh](https://wiki.archlinux.org/title/LightDM)
+
+```bash
+$ sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+$ systemctl enable lightdm
+```
+
+Para personalizar el gestor de pantalla instalado abrir el archivo con el nombre del gestor de pantalla instalado. En el caso de `ligthdm-gtk-greeter` abrir `sudo lightdm-gtk-greeter-settings`
+
+Si tienes otro gestor de pantalla primero desactivas ese y luego activas el nuevo:
+
+```bash
+$ systemctl disable sdm
+```
+
+Para que el cambio surja efecto ir al archivo: `/etc/lightdm/lightdm.conf` y colocar el lightdm instalado en esta linea. Descomentar esa linea
+
+```bash
+$ greeter-session = lightdm-gtk-greeter
+```
+
+[Personalizar lightdm](https://geekland.eu/personalizar-y-configurar-lightdm/)
+
+[Iniciar sesion como root](https://atareao.es/como/crear-una-entrada-para-acceder-como-root-en-ubuntu-con-lightdm/)
+
+## Instalar un gestor de ventanas
+
+En `/usr/share/xsessions` podemos ver los gestores de ventanas instalados
+
+## Qtile
 
 http://www.qtile.org/
 
+[Documentación](http://docs.qtile.org/en/stable/)
+
+## Instalación de Qtile
+
+```bash
+sudo pacman -S qtile
+```
+
 El archivo de configuración de Qtile `~/.config/qtile/config.py`
 
-Mi archivo de configuración de Qtile [aquí](./qtile/)
+## Configuración de Qtile
+
+Instalar la terminal de Qtile
+
+```bash
+sudo pacman -S xterm
+```
+
+Mi directorio de configuración de Qtile [aquí](./qtile/)
 
 Mi configuración solicita que se instalen ciertos programas:
 
-- [Fonts](#fonts-for-the-so) (usadas en os widgets de Qtile)
+- [Fonts](#fuentes-del-so) (usadas en os widgets de Qtile)
 
-### El .xsession
+- [Rofi](#rofi)
+
+### Mis atajos de teclado
+
+| Tecla    | Función                |
+| :------- | :--------------------- |
+| Ctrl + B | Navegador              |
+| Ctrl + E | Explorador de archivos |
+| Ctrl + L | Alacritty              |
+| Lemon    | 1$                     |
+
+# Instalacion de android como dual boot en Arch
+
+[Util](https://rootsudo.wordpress.com/2014/03/22/instalar-android-en-pc-y-arrancar-desde-grub2/comment-page-1/)
+
+[Video Detallado](https://www.youtube.com/watch?v=q4gtgVICQ6g)
