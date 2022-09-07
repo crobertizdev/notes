@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Gruvbox Material Dark",
+  "workbench.colorTheme": "Dracula Soft",
   "security.workspace.trust.untrustedFiles": "open",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -14,7 +14,7 @@
   "prettier.htmlWhitespaceSensitivity": "css",
   "prettier.insertPragma": false,
   "prettier.jsxSingleQuote": true,
-  "prettier.printWidth": 90,
+  "prettier.printWidth": 120,
   "prettier.proseWrap": "preserve",
   "prettier.quoteProps": "as-needed",
   "prettier.requirePragma": false,
@@ -52,7 +52,6 @@
   "workbench.tree.renderIndentGuides": "none",
 
   "workbench.editor.tabCloseButton": "off",
-  "breadcrumbs.enabled": false,
   "editor.overviewRulerBorder": false,
   "editor.padding.bottom": 14,
   "editor.padding.top": 14,
@@ -67,5 +66,7 @@
   "editor.guides.highlightActiveBracketPair": false,
 
   "editor.smoothScrolling": true,
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "workbench.startupEditor": "none",
+  "php.validate.executablePath": "/opt/lampp/bin/php"
 }

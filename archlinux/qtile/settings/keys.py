@@ -58,7 +58,7 @@ keys = [
     Key([mod, 'shift'], "m", lazy.spawn("rofi -show")),
 
     # Browser
-    Key([mod], "b", lazy.spawn("google-chrome-stable")),
+    Key([mod], "b", lazy.spawn("brave")),
 
     # Explorer
     Key([mod], "e", lazy.spawn("thunar")),
